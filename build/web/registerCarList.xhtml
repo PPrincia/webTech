@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h1>Registered Car List</h1>
+        <h:messages/>
+        <h:dataTable value="#{creg.carList}" var="c">
+            <h:column>
+                <f:facet name="header">Plate No</f:facet>
+                #{c.plateNo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Model</f:facet>
+                #{c.model}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Institution</f:facet>
+                #{c.institution}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Man Year</f:facet>
+                #{c.manufacturingYear}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Man Date</f:facet>
+                #{c.entranceDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cost</f:facet>
+                #{c.purchasingCost}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:form>
+                    <h:commandLink value="Delete" action="#{creg.deleteCar(c)}"/>
+                    <h:commandButton value="Update" action="#{creg.updateCar(c)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+
