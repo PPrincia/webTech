@@ -32,9 +32,9 @@
                 <h:inputText id="ed" value="#{creg.car.entranceDate}" required="true">
                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                 </h:inputText>
-                <h:message for="id"/>
+                <h:message for="ed"/>
                 <h:outputLabel value=""/>
-                <h:commandButton value="#{creg.action}" action="#{creg.registerCar()}"/>
+                <h:commandButton value="Save" action="#{creg.registerCar()}"/>
             </h:panelGrid>
             
         </h:form>

@@ -5,8 +5,8 @@
  */
 package rw.gov.carexam.persistance;
 
+import rw.gov.carexam.domain.NewHibernateUtil;
 import java.util.List;
-import net.sf.ehcache.hibernate.HibernateUtil;
 import org.hibernate.Session;
 import rw.gov.carexam.domain.Car;
 
@@ -20,7 +20,7 @@ public class CarDao {
         Session ss = NewHibernateUtil.getSession();
         ss.beginTransaction();
         ss.save(car);
-        ss.beginTransaction().commit();
+        ss.getTransaction().commit();
         ss.close();
        
     }
@@ -29,7 +29,7 @@ public class CarDao {
         Session ss = NewHibernateUtil.getSession();
         ss.beginTransaction();
         ss.update(car);
-        ss.beginTransaction().commit();
+        ss.getTransaction().commit();
         ss.close();
     }
     
@@ -37,7 +37,7 @@ public class CarDao {
         Session ss = NewHibernateUtil.getSession();
         ss.beginTransaction();
         ss.delete(car);
-        ss.beginTransaction().commit();
+         ss.getTransaction().commit();
         ss.close();
     }
     

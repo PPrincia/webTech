@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rw.gov.carexam.persistance;
+package rw.gov.carexam.domain;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

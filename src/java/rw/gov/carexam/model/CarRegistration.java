@@ -8,7 +8,7 @@ package rw.gov.carexam.model;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import rw.gov.carexam.domain.Car;
 import rw.gov.carexam.persistance.CarDao;
@@ -18,23 +18,25 @@ import rw.gov.carexam.persistance.CarDao;
  * @author Princia Pascale
  */
 @ManagedBean(name = "creg" )
+@ViewScoped
 public class CarRegistration {
     
-    private Car car = new Car();
-    private CarDao carDao = new CarDao();
+    private Car car=new Car();
+   
     private String action = "register";
     
     public String registerCar(){
        try{
             //if(action.equals("register"))
-            carDao.create(car);
+            new CarDao().create(car);
             FacesMessage msg = new FacesMessage("Thank you for registering " +car.getModel()+" "+car.getPlateNo());
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return "registerCarList";
         }catch(Exception ex){
-            FacesMessage msg = new FacesMessage("failed to register " +car.getPlateNo());
+            FacesMessage msg = new FacesMessage("failed to save car caused by: " +ex.getLocalizedMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);           
             return "carRegistrationForm";
+         
         }
     }
     
@@ -54,16 +56,10 @@ public class CarRegistration {
         return car;
     }
 
-    public CarDao getCarDao() {
-        return carDao;
-    }
-
-    public void setCarDao(CarDao carDao) {
-        this.carDao = carDao;
-    }
+      
     
     public List<Car> getCarList() {
-        return carDao.findAll();
+        return new CarDao().findAll();
     }
 
     public String getAction() {
